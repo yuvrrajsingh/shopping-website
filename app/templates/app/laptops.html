@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Laptops{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+   <div class="list-group">
+  <a href="{% url 'laptops' %}" class="list-group-item bg-success list-group-item-action active">
+    Laptops For You
+  </a>
+  <a href="{% url 'laptops' 'HP'  %}" class="list-group-item list-group-item-action">HP</a>
+  <a href="{% url 'laptops' 'ASUS'  %}" class="list-group-item list-group-item-action">ASUS</a>
+  <a href="{% url 'laptops' 'DELL'  %}" class="list-group-item list-group-item-action">DELL</a>
+  <a href="{% url 'laptops' 'Lenovo'  %}" class="list-group-item list-group-item-action">Lenovo</a>
+  <a href="{% url 'laptops' 'Apple'  %}" class="list-group-item list-group-item-action">Apple</a>
+  <a href="{% url 'laptops' 'below'  %}" class="list-group-item list-group-item-action">Below 30000</a>
+  <a href="{% url 'laptops' 'above'  %}" class="list-group-item list-group-item-action">Above 30000</a>
+</div>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+   <div class="row">
+       {% for item in laptops %}
+       <div class="card" style="width: 18rem;">
+          <a href="{% url 'product-detail' item.id %}" class="text-dark"><img class="card-img-top" src="{{item.product_image.url}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <p class="card-text">RS. {{item.discount_price}}</p>
+<!--            <a href="#" class="btn btn-primary">Add To Cart</a>-->
+          </div>
+          </a><br>
+        </div>
+       <br>
+       {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
+
+
